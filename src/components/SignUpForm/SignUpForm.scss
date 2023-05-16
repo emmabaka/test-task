@@ -1,0 +1,144 @@
+@import "../../variables.scss";
+
+.sign-up-form {
+  max-width: 328px;
+  @media (min-width: 768px) {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+.input-container {
+  position: relative;
+}
+.input-container:nth-child(1),
+.input-container:nth-child(2) {
+  padding-bottom: 50px;
+}
+.label {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  transform: translateY(50%);
+  font-size: 16px;
+  line-height: 1.63;
+  color: $label-color;
+}
+.input {
+  display: block;
+  width: 100%;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid $input-border-color;
+  border-radius: 4px;
+
+  &:focus + .label,
+  &:not(:placeholder-shown) + .label {
+    transform: translateY(-12px);
+    background-color: $bgc-color;
+  }
+}
+.error-input {
+  border-color: $error-color;
+  & + .label {
+    color: $error-color;
+  }
+}
+
+.radio-container {
+  padding-top: 25px;
+}
+.radio-title {
+  padding-bottom: 14px;
+}
+.radio-wrapper {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 7px;
+}
+
+// Upload
+.upload {
+  padding-bottom: 50px;
+}
+.upload-container {
+  display: flex;
+  max-width: 328px;
+  padding-top: 36px;
+
+  @media (min-width: 768px) {
+    min-width: 380px;
+  }
+}
+.upload-label {
+  padding: 14px 15px;
+  border: 1px solid $text-color;
+  border-radius: 4px 0px 0px 4px;
+}
+.input-upload-container {
+  flex: 1 1 auto;
+  border: 1px solid $input-border-color;
+  border-radius: 0px 4px 4px 0px;
+}
+.upload-input {
+  width: 100%;
+  padding: 17px 16px;
+}
+.upload-input::-webkit-file-upload-button {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+.submit-button {
+  display: block;
+  width: 120px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.63;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin: 0 auto;
+  background-color: $primary-color;
+  color: $text-color;
+  border: none;
+  border-radius: 80px;
+
+  &:hover {
+    background-color: $button-hover;
+  }
+}
+.disabled {
+  display: block;
+  width: 120px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.63;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin: 0 auto;
+  background-color: $button-disabled;
+  color: white;
+  border: none;
+  border-radius: 80px;
+}
+.helper {
+  padding-top: 4px;
+  font-size: 12px;
+  line-height: 0.88;
+  color: $label-color;
+}
+.error {
+  padding-top: 4px;
+  font-size: 12px;
+  line-height: 0.88;
+  color: $error-color;
+}

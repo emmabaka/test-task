@@ -1,0 +1,37 @@
+@import "../../variables.scss";
+
+.users {
+  padding-top: 140px;
+}
+.users-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 50px;
+
+  @media (min-width: 768px) {
+    gap: 16px;
+  }
+  @media (min-width: 1024px) {
+    gap: 29px;
+  }
+}
+.more-button {
+  display: block;
+  width: 120px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.63;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin: 0 auto;
+  background-color: $primary-color;
+  color: $text-color;
+  border: none;
+  border-radius: 80px;
+
+  &:hover {
+    background-color: $button-hover;
+  }
+}

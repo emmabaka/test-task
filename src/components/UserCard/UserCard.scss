@@ -1,0 +1,33 @@
+.card-container {
+  padding: 20px;
+  width: 328px;
+  border-radius: 10px;
+  background-color: white;
+
+  @media (min-width: 768px) {
+    width: 344px;
+  }
+  @media (min-width: 1024px) {
+    width: 282px;
+  }
+  @media (min-width: 2560px) {
+    width: 370px;
+  }
+}
+.user-img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.user-name,
+.user-position,
+.user-email,
+.user-phone {
+  font-size: 16px;
+  line-height: 1.63;
+  text-align: center;
+}
+.user-name {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
