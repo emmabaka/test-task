@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import UserCard from "../UserCard/UserCard";
 import fetchUsers from "../../api/fetchUsers";
+import UserCard from "../UserCard/UserCard";
 import "./UserSection.scss";
 
 const UserSection = () => {
