@@ -60,6 +60,7 @@
 }
 .radioWrapper {
   display: flex;
+  align-items: center;
   gap: 12px;
   padding-bottom: 7px;
 }
@@ -141,6 +142,12 @@ input[type="radio"] {
     background-color: $button-hover;
   }
 }
+.spinnerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .disabled {
   display: block;
   width: 120px;

@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { ThreeDots } from "react-loader-spinner";
 import fetchData from "../../api/fetchData";
 import postUser from "../../api/postUser";
 import styles from "./SignUpForm.module.scss";
@@ -10,6 +11,7 @@ const SignUpForm = ({ setStatus }) => {
   const [errorText, setErrorText] = useState("");
   const [token, setToken] = useState("");
   const [positions, setPosition] = useState([]);
+  const [load, setLoad] = useState(false);
 
   const formElement = useRef();
 
@@ -46,7 +48,7 @@ const SignUpForm = ({ setStatus }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    setLoad(true);
     const formData = new FormData(formElement.current);
 
     postUser(formData, token)
@@ -56,7 +58,8 @@ const SignUpForm = ({ setStatus }) => {
       .catch((err) => {
         console.log(err);
         setStatus("");
-      });
+      })
+      .finally(() => setLoad(false));
   };
 
   const validatePhoto = (e) => {
@@ -215,14 +218,28 @@ const SignUpForm = ({ setStatus }) => {
         </div>
         <p className={styles.error}>{errorText}</p>
       </div>
-
-      <button
-        className={isFormValid ? styles.submitButton : styles.disabled}
-        type="submit"
-        disabled={!isFormValid}
-      >
-        Submit
-      </button>
+      <div className={styles.spinnerWrapper}>
+        {load ? (
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="#f4e041"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
+        ) : (
+          <button
+            className={isFormValid ? styles.submitButton : styles.disabled}
+            type="submit"
+            disabled={!isFormValid}
+          >
+            Submit
+          </button>
+        )}
+      </div>
     </form>
   );
 };
