@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import fetchUsers from "../../api/fetchUsers";
+import PropTypes from "prop-types";
+import { ThreeDots } from "react-loader-spinner";
 import UserCard from "../UserCard/UserCard";
-import "./UserSection.scss";
+import fetchUsers from "../../api/fetchUsers";
+import { normalizeData } from "../../helpers/normalizeData";
+import styles from "./UserSection.module.scss";
 
-const UserSection = () => {
-  const [users, setUsers] = useState([]);
+const UserSection = ({ users, setUsers }) => {
   const [nextUrl, setNextUrl] = useState("");
   const [firstFetch, setFirstFetch] = useState(true);
   const [lastPage, setLastPage] = useState(false);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     getUsers();
@@ -15,56 +18,73 @@ const UserSection = () => {
   }, []);
 
   const getUsers = (link) => {
+    setLoad(true);
     const data = fetchUsers(link);
     return data
       .then((res) => {
-        const data = normalizeData(res);
+        const { nextLink, normalized, page, totalPage } = normalizeData(res);
         if (firstFetch) {
-          setUsers([...data.normalized]);
+          setUsers([...normalized]);
           setFirstFetch(false);
         } else {
           setUsers((prev) => {
-            const isPrevUsers = data.normalized.some((currItem) =>
+            const isPrevUsers = normalized.some((currItem) =>
               prev.some((prevItem) => prevItem.id === currItem.id)
             );
 
             if (isPrevUsers) return prev;
 
-            return [...prev, ...data.normalized];
+            return [...prev, ...normalized];
           });
         }
 
-        setNextUrl(data.nextLink);
-        if (data.page === data.totalPage) setLastPage(true);
+        setNextUrl(nextLink);
+        if (page === totalPage) setLastPage(true);
       })
-      .catch((e) => console.log(e));
-  };
-
-  const normalizeData = (info) => {
-    const { data } = info;
-    const normalized = [...data.users];
-    const page = data.page;
-    const totalPage = data.total_pages;
-    const nextLink = data.links.next_url;
-    return { nextLink, normalized, page, totalPage };
+      .catch((e) => console.log(e))
+      .finally(() => setLoad(false));
   };
 
   return (
-    <section className="users" id="users">
+    <section className={styles.users} id="users">
       <div className="container">
         <h2 className="title">Working with GET request</h2>
-        <div className="users-wrapper">
+        <div className={styles.usersWrapper}>
           {users.map((user) => {
             return <UserCard key={user.id} user={user} />;
           })}
         </div>
-        {!lastPage && (
-          <button className="more-button" onClick={() => getUsers(nextUrl)}>
-            Show more
-          </button>
-        )}
+
+        <div className={styles.spinnerWrapper}>
+          {load ? (
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="#f4e041"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            !lastPage && (
+              <button
+                className={styles.moreButton}
+                onClick={() => getUsers(nextUrl)}
+              >
+                Show more
+              </button>
+            )
+          )}
+        </div>
       </div>
     </section>
   );
 };
 export default UserSection;
+
+UserSection.propTypes = {
+  users: PropTypes.array.isRequired,
+  setUsers: PropTypes.func.isRequired,
+};

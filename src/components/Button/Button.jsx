@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import "./Button.scss";
+import styles from "./Button.module.scss";
 
-const Button = ({ children, width, id }) => {
+const Button = ({ children, width = 100, id = "#sign-up" }) => {
   return (
-    <a className="button" style={{ width: width }} href={id}>
+    <a className={styles.button} style={{ width: width }} href={id}>
       {children}
     </a>
   );
@@ -12,6 +12,6 @@ export default Button;
 
 Button.propTypes = {
   children: PropTypes.node,
-  width: PropTypes.number.isRequired,
+  width: PropTypes.number,
   id: PropTypes.string,
 };

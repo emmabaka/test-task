@@ -3,7 +3,7 @@
 .users {
   padding-top: 140px;
 }
-.users-wrapper {
+.usersWrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,7 +17,7 @@
     gap: 29px;
   }
 }
-.more-button {
+.moreButton {
   display: block;
   width: 120px;
   text-align: center;
@@ -30,8 +30,14 @@
   color: $text-color;
   border: none;
   border-radius: 80px;
+  cursor: pointer;
 
   &:hover {
     background-color: $button-hover;
   }
+}
+.spinnerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,8 +1,11 @@
-.card-container {
+.cardContainer {
   padding: 20px;
   width: 328px;
   border-radius: 10px;
   background-color: white;
+  white-space: nowrap; /* Забороняємо перенесення тексту на новий рядок */
+  overflow: hidden; /* Ховаємо зайвий текст, який не поміщається */
+  text-overflow: ellipsis;
 
   @media (min-width: 768px) {
     width: 344px;
@@ -14,20 +17,20 @@
     width: 370px;
   }
 }
-.user-img {
+.userImg {
   display: block;
   margin: 0 auto;
   border-radius: 50%;
 }
-.user-name,
-.user-position,
-.user-email,
-.user-phone {
+.userName,
+.userPosition,
+.userEmail,
+.userPhone {
   font-size: 16px;
   line-height: 1.63;
   text-align: center;
 }
-.user-name {
+.userName {
   padding-top: 20px;
   padding-bottom: 20px;
 }

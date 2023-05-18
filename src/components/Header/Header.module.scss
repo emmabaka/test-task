@@ -1,14 +1,19 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
   background-color: white;
 }
-.header-container {
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 14px;
   height: 60px;
 }
-.buttons-wrapper {
+.buttonsWrapper {
   display: flex;
   gap: 10px;
 }

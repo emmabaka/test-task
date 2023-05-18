@@ -1,11 +1,11 @@
 import success from "../../assets/success-image.png";
-import "./SuccessSection.scss";
+import styles from "./SuccessSection.module.scss";
 
 const SuccessSection = () => {
   return (
     <div>
       <h2 className="title">User successfully registered</h2>
-      <img className="success-img" src={success} alt="success" />
+      <img className={styles.successImg} src={success} alt="success" />
     </div>
   );
 };

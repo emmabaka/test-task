@@ -1,20 +1,28 @@
+import { useMediaQuery } from "react-responsive";
 import logo from "../../assets/logo.png";
 import Button from "../Button/Button";
-import "./Header.scss";
+import styles from "./Header.module.scss";
 
 const Header = () => {
+  const isMobile = useMediaQuery({ maxWidth: 360 });
+
   return (
-    <header className="header">
-      <div className="container header-container">
+    <header className={styles.header}>
+      <div className={`${styles.headerContainer} container`}>
         <img src={logo} alt="logo" width={104} height={26} />
-        <div className="buttons-wrapper">
-          <Button width={100} id="#users">
-            Users
-          </Button>
-          <Button width={100} id="#sign-up">
-            Sign up
-          </Button>
-        </div>
+        {isMobile ? (
+          <div className={styles.buttonsWrapper}>
+            <Button id="#users" width={75}>
+              Users
+            </Button>
+            <Button width={75}>Sign up</Button>
+          </div>
+        ) : (
+          <div className={styles.buttonsWrapper}>
+            <Button id="#users">Users</Button>
+            <Button>Sign up</Button>
+          </div>
+        )}
       </div>
     </header>
   );

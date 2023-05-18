@@ -1,14 +1,35 @@
 import PropTypes from "prop-types";
-import "./UserCard.scss";
+import coverPhoto from "../../assets/pexels-alexandr-podvalny-1227513.jpeg";
+import styles from "./UserCard.module.scss";
 
 const UserCard = ({ user: { photo, position, name, email, phone } }) => {
+  function sliceSentence(sentence) {
+    if (sentence.length <= 25) {
+      return sentence;
+    } else {
+      return sentence.slice(0, 25) + "...";
+    }
+  }
+
   return (
-    <div className="card-container">
-      <img className="user-img" src={photo} alt="photo" />
-      <p className="user-name">{name}</p>
-      <p className="user-position">{position}</p>
-      <p className="user-email">{email}</p>
-      <p className="user-phone">{phone}</p>
+    <div className={styles.cardContainer}>
+      <img
+        className={styles.userImg}
+        src={photo}
+        alt="photo"
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          currentTarget.src = { coverPhoto };
+        }}
+      />
+      <p className={styles.userName} title={name}>
+        {sliceSentence(name)}
+      </p>
+      <p className={styles.userPosition}>{position}</p>
+      <p className={styles.userEmail} title={email}>
+        {sliceSentence(email)}
+      </p>
+      <p className={styles.userPhone}>{phone}</p>
     </div>
   );
 };

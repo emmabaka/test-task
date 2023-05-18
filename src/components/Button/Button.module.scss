@@ -12,8 +12,15 @@
   color: $text-color;
   border: none;
   border-radius: 80px;
+  cursor: pointer;
 
   &:hover {
     background-color: $button-hover;
+  }
+}
+
+@media (max-width: 360px) {
+  .button {
+    width: 70px;
   }
 }
