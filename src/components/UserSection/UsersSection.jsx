@@ -46,9 +46,9 @@ const UserSection = ({ users, setUsers }) => {
   };
 
   return (
-    <section className={styles.users} id="users">
-      <div className="container">
-        <h2 className="title">Working with GET request</h2>
+    <section className={styles.users} id='users'>
+      <div className='container'>
+        <h2 className='title'>Working with GET request</h2>
         <div className={styles.usersWrapper}>
           {users.map((user) => {
             return <UserCard key={user.id} user={user} />;
@@ -58,13 +58,13 @@ const UserSection = ({ users, setUsers }) => {
         <div className={styles.spinnerWrapper}>
           {load ? (
             <ThreeDots
-              height="80"
-              width="80"
-              radius="9"
-              color="#f4e041"
-              ariaLabel="three-dots-loading"
+              height='80'
+              width='80'
+              radius='9'
+              color='#f4e041'
+              ariaLabel='three-dots-loading'
               wrapperStyle={{}}
-              wrapperClassName=""
+              wrapperClassName=''
               visible={true}
             />
           ) : (
